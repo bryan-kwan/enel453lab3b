@@ -208,7 +208,7 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
-set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS NOT_USED -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH top_level_tb -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME MUX2TO1_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id MUX2TO1_tb
@@ -378,6 +378,8 @@ set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to button
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE distance2duty_cycle_converter_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE distance2duty_cycle_converter.sv
 set_global_assignment -name TEXT_FILE v2d_rom.txt
 set_global_assignment -name SYSTEMVERILOG_FILE MUX4TO1_tb.sv
 set_global_assignment -name SYSTEMVERILOG_FILE MUX4TO1.sv
@@ -407,4 +409,10 @@ set_global_assignment -name SYSTEMVERILOG_FILE digit_manager.sv
 set_global_assignment -name SYSTEMVERILOG_FILE digit_manager_tb.sv
 set_global_assignment -name SYSTEMVERILOG_FILE averager.sv
 set_global_assignment -name SYSTEMVERILOG_FILE averager_tb.sv
+set_global_assignment -name QIP_FILE ../ENEL453_Lab3/adc_qsys/synthesis/adc_qsys.qip
+set_global_assignment -name SYSTEMVERILOG_FILE PWM_DAC.sv
+set_global_assignment -name SYSTEMVERILOG_FILE MUX2TO1_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE MUX2TO1.sv
+set_global_assignment -name SYSTEMVERILOG_FILE downcounter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ADC_Simulation_tb.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
