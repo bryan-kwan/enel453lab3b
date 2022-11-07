@@ -9,10 +9,11 @@
 // See clock_divider to see how downcounter can be used.
 
 module downcounter
- #(int          period = 1000) // Number to count to (i.e. clock divide), must be postive
+ #(parameter WIDTH = 16) // Width of period
   (input  logic clk,      // Clock to be divided (by period)                                        
                 reset_n,  // Active-low reset                                           
-                enable,   // Active-high enable (count enable)                                        
+                enable,   // Active-high enable (count enable)   
+   input logic [WIDTH-1:0] period, // Number to count to (i.e. clock divide), must be postive                                    
    output logic zero);    // Creates a positive pulse every time current_count hits zero count, 
                           // zero is useful to enable another device, like to slow down a counter
    // output logic [X:0] value); // Outputs the current_count value, if needed,

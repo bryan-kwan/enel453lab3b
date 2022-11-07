@@ -6,7 +6,7 @@ module distance2duty_cycle_converter_tb();
 
     logic clk = 0, reset_n = 1, enable=1;
     logic [WIDTH-1:0] distance;
-    logic pwm_led; // Output signal that controls LEDR (active high)
+    logic pwm_led, pwm_out; // Output signal that controls LEDR (active high); pwm_out=~pwm_led
 
     // UUT
     distance2duty_cycle_converter #(.WIDTH(WIDTH)) 
