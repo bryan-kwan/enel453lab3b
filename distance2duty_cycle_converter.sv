@@ -11,14 +11,15 @@ module distance2duty_cycle_converter
         output logic pwm_led
         );
 
+    logic pwm_out;
+    assign pwm_led = ~pwm_out; // Invert LED signal to have low duty cycle for large distance
+
     PWM_DAC #(.width(WIDTH)) PWM_DAC_ins(
         .reset_n(reset_n),
         .clk(clk),
         .enable(enable),
-        .duty_cycle(distance), // Large distance = large duty cycle = small LED duty cycle (LED inverts signal)
+        .duty_cycle(distance), // Large distance = large duty cycle = large duty cycle
         .count_value(MAX_COUNT),
-        .pwm_out(pwm_led)
+        .pwm_out(pwm_out)
     );
-
-
 endmodule

@@ -18,17 +18,21 @@ module top_level
   logic write_enable; // Storage register write enable active high
   logic [12:0] voltage, distance, voltage_out, distance_out;
   logic [11:0] ADC_out, ADC_raw, avg_out;
-  
+  logic pwm_led, // Output pwm signal for LEDR
+        LEDR_enable;
   assign Num_Hex0 = reg_out[3:0]; 
   assign Num_Hex1 = reg_out[7:4];
   assign Num_Hex2 = reg_out[11:8];
   assign Num_Hex3 = reg_out[15:12];
   assign Num_Hex4 = 4'b0000;
   assign Num_Hex5 = 4'b0000;                                             
-  assign LEDR[9:0]= SW_out[9:0]; // gives visual display of the switch inputs to the LEDs on board
+  assign LEDR[9:0]= {(10){pwm_led}};
+  assign LEDR_enable = 1; // LEDR always on
   
   // instantiate lower level modules
   
+  distance2duty_cycle_converter distance2duty_cycle_converter_LEDR_ins(.distance(distance),.reset_n(reset_n),.clk(clk),.enable(LEDR_enable),.pwm_led(pwm_led));
+
   digit_manager digit_manager_ins(.data(reg_out), .select(SW_out[9:8]), .Blank(Blank), .DP(DP_in));
 
   ADC_Data ADC_Data_ins(.clk(clk),.reset_n(reset_n),.voltage(voltage),.distance(distance),.ADC_raw(ADC_raw),.ADC_out(ADC_out));
