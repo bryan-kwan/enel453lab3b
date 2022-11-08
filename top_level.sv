@@ -8,7 +8,8 @@ module top_level
   input  logic [9:0] SW,
   input  logic button,
   output logic [9:0] LEDR,
-  output logic [7:0] HEX0,HEX1,HEX2,HEX3,HEX4,HEX5);
+  output logic [7:0] HEX0,HEX1,HEX2,HEX3,HEX4,HEX5,
+  output logic buzzer);
   
   logic [3:0]  Num_Hex0, Num_Hex1, Num_Hex2, Num_Hex3, Num_Hex4, Num_Hex5;   
   logic [5:0]  DP_in, Blank;
@@ -20,7 +21,8 @@ module top_level
   logic [11:0] ADC_out, ADC_raw, avg_out;
   logic pwm_led, // Output pwm signal for LEDR
         LEDR_enable,
-        pwm_flash; // pwm signal for flashing seven segment displays
+        pwm_flash, // pwm signal for flashing seven segment displays
+        pwm_buzzer; 
   assign Num_Hex0 = reg_out[3:0]; 
   assign Num_Hex1 = reg_out[7:4];
   assign Num_Hex2 = reg_out[11:8];
@@ -29,9 +31,13 @@ module top_level
   assign Num_Hex5 = 4'b0000;                                             
   assign LEDR[9:0]= {(10){pwm_led}};
   assign LEDR_enable = 1; // LEDR always on
+  assign buzzer=pwm_buzzer;
   
   // instantiate lower level modules
 
+
+  distance2frequency_converter #(.BASE_PERIOD(100),.DUTY_CYCLE(50),.CLOCK_DIVIDE_LOW_FREQ(2040), .CLOCK_DIVIDE_HIGH_FREQ(40)) // ~245Hz to 12500 Hz
+    distance2frequency_converter_buzzer_ins(.distance(distance),.reset_n(reset_n),.clk(clk),.enable(write_enable),.pwm_led(pwm_buzzer));
   distance2frequency_converter distance2frequency_converter_flash_ins(.distance(distance),.reset_n(reset_n),.clk(clk),.enable(write_enable),.pwm_led(pwm_flash));
 
   distance2duty_cycle_converter distance2duty_cycle_converter_LEDR_ins(.distance(distance),.reset_n(reset_n),.clk(clk),.enable(LEDR_enable),.pwm_led(pwm_led));

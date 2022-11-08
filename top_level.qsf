@@ -179,7 +179,7 @@ set_location_assignment PIN_V11 -to GSENSOR_SDI
 set_location_assignment PIN_V12 -to GSENSOR_SDO
 set_location_assignment PIN_AB5 -to ARDUINO_IO[0]
 set_location_assignment PIN_AB6 -to ARDUINO_IO[1]
-set_location_assignment PIN_AB7 -to ARDUINO_IO[2]
+set_location_assignment PIN_AB7 -to buzzer
 set_location_assignment PIN_AB8 -to ARDUINO_IO[3]
 set_location_assignment PIN_AB9 -to ARDUINO_IO[4]
 set_location_assignment PIN_Y10 -to ARDUINO_IO[5]
@@ -235,7 +235,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[13]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[14]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[15]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to buzzer
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ARDUINO_IO[5]
