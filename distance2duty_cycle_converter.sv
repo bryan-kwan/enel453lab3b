@@ -18,7 +18,7 @@ module distance2duty_cycle_converter
         .reset_n(reset_n),
         .clk(clk),
         .enable(enable),
-        .duty_cycle(distance), // Large distance = large duty cycle = large duty cycle
+        .duty_cycle(distance), // Large distance = large duty cycle
         .count_value(MAX_COUNT),
         .pwm_out(pwm_out)
     );
